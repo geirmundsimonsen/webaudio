@@ -81,9 +81,15 @@ class Clock {
         if (args.fnId === undefined) {
             args.fnId = Math.random()
         }
+<<<<<<< HEAD
         args.beats = beats;
         args.clock = this;
         args.ctx = this.ctx;
+=======
+        args.beats = beats
+        args.clock = this
+        args.ctx = this.ctx
+>>>>>>> bc52f9bca80f5a5ee582baf4daf5b9dde11fb5a8
         this.scheduledFuncs.set([beats, Math.random()], [func, args]);
     }
 
@@ -94,6 +100,7 @@ class Clock {
             let nextEntry = entries.next().value;
             if (nextEntry === undefined) {
                 break;
+<<<<<<< HEAD
             }
             if (nextEntry[1][1].fnId === fnId) {
                 keysToBeDeleted.push(nextEntry[0]);
@@ -102,6 +109,18 @@ class Clock {
                 if (args.stop) {
                     args.t = this.ctx.currentTime;
                     f(args);
+=======
+            } 
+            
+            let nextBeat = nextEntry[0][0];
+            if (nextEntry[1][1].fnId === fnId) {
+                keysToBeDeleted.push(nextEntry[0])
+                if (nextEntry[1][1].stop) {
+                    let f = nextEntry[1][0]
+                    let args = nextEntry[1][1]
+                    args.t = this.ctx.currentTime
+                    f(args)
+>>>>>>> bc52f9bca80f5a5ee582baf4daf5b9dde11fb5a8
                 }
             }
         }
@@ -113,12 +132,23 @@ class Clock {
     }
 }
 
+<<<<<<< HEAD
 window.p2f = (pitch) => {
     return 440 * Math.pow(2, (pitch-69)/12);
 }
 
 window.makeClock = (bpm) => {
     return new Clock(ctx, 0.1, bpm);
+=======
+window.makeClock = (bpm) => {
+    return new Clock(ctx, 0.1, bpm);
+}
+
+window.p2f = (pitch) => {
+    return 440 * Math.pow(2, (pitch-69) / 12);
+}
+
+>>>>>>> bc52f9bca80f5a5ee582baf4daf5b9dde11fb5a8
 }
 
 window.telephone = (args) => {
